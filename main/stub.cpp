@@ -31,7 +31,7 @@
 
 #define SQ(x) ((x)*(x))
 
-void drawCubicBezier(
+void genSphere(
 	GLfloat *TRIANGLES, 
 	GLfloat *NORMALS,
 	GLfloat *UV,
@@ -67,39 +67,11 @@ float LIGHTPOS[3] = {0.0,0.0,5.0};
 void loadSurfaceOfRevolution() 
 {
 /*------------------------------CREATE GEOMETRY-------------------------------*/
-	// GLfloat vp[18];    // array of vertex points
-	
-	// //face 1, vertex 1
-	// vp[0] = -1; //x
-	// vp[1] = -1; //y
-	// vp[2] = 0; //z
-	// //face 1, vertex 2
-	// vp[3] = 1; //x
-	// vp[4] = -1; //y
-	// vp[5] = 0; //z
-	// //face 1, vertex 3
-	// vp[6] = -1; //x
-	// vp[7] =  1; //y
-	// vp[8] =  0; //z
-	
-	// //face 2, vertex 1
-	// vp[ 9] = -1; //x
-	// vp[10] =  1; //y
-	// vp[11] = 0; //z
-	// //face 2, vertex 2
-	// vp[12] =  1; //x
-	// vp[13] = -1; //y
-	// vp[14] = 0; //z
-	// //face 2, vertex 3
-	// vp[15] =  1; //x
-	// vp[16] =  1; //y
-	// vp[17] =  0; //z
-
 	GLfloat vp[MESH_LENGTH];    // array of vertex points
 	GLfloat normal[MESH_LENGTH];	// Array of surface normals
 	GLfloat uv[UV_LENGTH]; // UV Texture mapping
 
-	drawCubicBezier(&(vp[0]),&(normal[0]),&(uv[0]),MESH_LENGTH,STEPS_Y, STEPS_THETA);
+	genSphere(&(vp[0]),&(normal[0]),&(uv[0]),MESH_LENGTH,STEPS_Y, STEPS_THETA);
 
 	// VAO -- vertex attribute objects bundle the various things associated with vertices
 	GLuint vao;
@@ -273,7 +245,7 @@ void keyboardFunction(GLFWwindow* window, int key, int scancode, int action, int
 //=============================================================================
 
 // Compute a cubic bezier using fixed control points
-void drawCubicBezier(
+void genSphere(
 	GLfloat *TRIANGLES, 
 	GLfloat *NORMALS,
 	GLfloat *UV,
@@ -299,8 +271,8 @@ void drawCubicBezier(
 
 	int X_DIM = 0, Y_DIM = 1, Z_DIM = 2;
 
-	float ptX[4] = { 0.0, 1.0, 1.0, 0.0 };
-	float ptY[4] = { 1.0, 0.5,-0.5,-1.0 };
+	float ptX[4] = { 0.0, 1.33333, 1.33333, 0.0 };
+	float ptY[4] = { 1.0, 1.0,-1.0,-1.0 };
 
 	const float PI = 3.1415926;
 	float THETA_INCR = 2.0 * PI / (float) STEPS_THETA;

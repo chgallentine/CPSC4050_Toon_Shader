@@ -159,9 +159,11 @@ int main (int argc, char *argv[]) {
 
 		// update and draw mesh, rotating the SoR 
 		// set a pace independent of outright rendering speed
+		// =========================================================
                 double rotAmt = -60 * elapsed_seconds; 
-		model_mat = rotate_y_deg(identity_mat4(), rotAmt) * model_mat;
-
+                rotAmt += 1; // SILENCE WARNING BY NOT USING
+		// model_mat = rotate_y_deg(identity_mat4(), rotAmt) * model_mat;
+		model_mat = identity_mat4() * model_mat;
 		// load uniform variables for shaders
 		// YOU HAVE TO IMPLEMENT THIS FUNCTION IN stub.cpp	
 		loadUniforms(shader_programme);
