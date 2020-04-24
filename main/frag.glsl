@@ -38,7 +38,7 @@ void main () {
 
 	float diff = max(dot(norm, light_direction), 0.0);
 	float lambertian = max(dot(normal, half_direction), 0.0);
-	float specular_val = pow(lambertian, 16);
+	float specular_val = pow(lambertian, 256);
 
 	vec3 diffuse;
 	vec3 specular = light_color * specular_val;
@@ -47,8 +47,8 @@ void main () {
 
 	ambient = ambient_gain * ambient;
 
-	// fragment_color = vec4(ambient + diffuse + specular,1.0);
-	fragment_color = vec4(ambient,1.0);
+	fragment_color = vec4(ambient + specular,1.0);
+	// fragment_color = vec4(ambient,1.0);
 }
 
 
