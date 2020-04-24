@@ -27,7 +27,7 @@ void main () {
 	float ambient_gain = 1.0;
 	// Assume following are pointing at origin
 	// vec3 light_position = vec3(view_mat[3][0], view_mat[3][1], -view_mat[3][2]);
-	vec3 light_position = vec3(-5.0,-5.0,5.0);
+	vec3 light_position = vec3(-5.0,-5.0,3.0);
 	vec3 view_position = vec3(0.0,0.0,5.0);
 
 	vec3 norm = normalize(normal);
