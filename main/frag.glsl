@@ -4,8 +4,8 @@
 // Define INPUTS from fragment shader
 uniform mat4 view_mat;
 
-// uniform int DIFFUSE_SHADING, SPECULAR_LIGHTING, DIFFUSE_MAP;
-// uniform int SPECULAR_EXPONENT;
+// uniform float DIFFUSE_SHADING, SPECULAR_LIGHTING, DIFFUSE_MAP;
+// uniform float SPECULAR_EXPONENT;
 
 // uniform vec3 LIGHT_POSITION;
 
@@ -23,6 +23,10 @@ out vec4 fragment_color; //RGBA color
 
 void main () {
 	vec3 light_color = vec3(0.5,0.5,0.5);
+	vec3 unlit_color = vec3(0, 25, 51);
+	vec3 outline_color = vec3(0,0,0);
+	float lit_thickness = 0.05;
+	float unlit_thickness = 0.2;
 	vec3 ambient = vec3(100.0/255.0,149.0/255.0,237.0/255.0);
 	float ambient_gain = 1.0;
 	// Assume following are pointing at origin
@@ -48,23 +52,10 @@ void main () {
 	ambient = ambient_gain * ambient;
 
 	fragment_color = vec4(ambient + specular,1.0);
+
+	if(dot(view_direction, norm) < mix(unlit_thickness, lit_thickness, max(0.0, dot(norm, light_direction))))
+	{
+		fragment_color = vec4((light_color * outline_color), 1.0);
+	}
 	// fragment_color = vec4(ambient,1.0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
