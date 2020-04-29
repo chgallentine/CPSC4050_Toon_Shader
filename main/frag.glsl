@@ -23,6 +23,7 @@ out vec4 fragment_color; //RGBA color
 
 void main () {
 	vec3 light_color = vec3(0.5,0.5,0.5);
+//<<<<<<< patch-1
 	
 	vec3 unlit_color = vec3(0, 76, 153);
 	vec3 outline_color = vec3(0,0,0);
@@ -33,6 +34,12 @@ void main () {
 	float rim_amount = 0.2;
 	float rim_threshold = 0.06;
 	
+//=======
+	vec3 unlit_color = vec3(0, 25, 51);
+	vec3 outline_color = vec3(0,0,0);
+	float lit_thickness = 0.05;
+	float unlit_thickness = 0.2;
+//>>>>>>> master
 	vec3 ambient = vec3(100.0/255.0,149.0/255.0,237.0/255.0);
 	float ambient_gain = 1.0;
 	// Assume following are pointing at origin
@@ -63,6 +70,7 @@ void main () {
 	float rim_dot = 1-dot(view_direction, norm);
 
 	//Draw Outline
+
 	if(dot(view_direction, norm) < mix(unlit_thickness, lit_thickness, max(0.0, dot(norm, light_direction))))
 	{
 		fragment_color = vec4((light_color * outline_color), 1.0);
